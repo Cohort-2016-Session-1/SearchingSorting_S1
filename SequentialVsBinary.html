@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SequentialVsBinary.html</title>
+</head>
+<body>
+    <script>
+        //A short program for distinguishing
+        //between two searching algorithms
+        var SIZE = 500; //size of array
+        var index;      //loop variable
+        var searchValue;    //user input
+        var found;      //boolean flag
+        var ES = "";
+        var BR = "<br>";
+
+        //Create an empty array
+        var squaresArray = new Array(SIZE);
+
+        //Populate the array:
+        for (index = 0; index < SIZE; index++)
+        {
+            squaresArray[index] = index * index;
+            //could also use Math.power(index, 2)
+        }
+
+        //Get search value from user:
+        searchValue = prompt(
+                "Enter # < 250K to search", ES);
+        searchValue = parseInt(searchValue);
+
+        //Perform a SEQUENTIAL SEARCH:
+        /*index = 0;
+        found = false;  //reset flags
+
+        while ( index < SIZE &&
+                !(found) &&
+                squaresArray[index] <= searchValue)
+        {
+            //1. index cannot exceed array length
+            //2. If we find a perfect square
+            //  we're done
+            //3. Once the array value > search
+            //  value, we're done
+            document.write(squaresArray[index] + BR);
+
+            if (squaresArray[index] == searchValue)
+            {
+                found = true;
+                document.write("PERFECT SQUARE!")
+            }
+
+            index++;    //increment counter
+        }*/
+
+        //Perform a BINARY SEARCH:
+        var low = 0;    //low end of the array
+        var high = SIZE - 1;    //high end ...
+
+        index = 0;
+        found = false;  //reset flags
+
+        while (low <= high && !(found))
+        {
+            document.write(squaresArray[index] +
+                " " + index + BR);
+
+            //Find the middle index:
+            index = Math.floor((low + high)/2);
+
+            //Test the middle index:
+            if(squaresArray[index] == searchValue)
+            {
+                found = true;
+                document.write("PERFECT SQUARE!");
+            }
+            else
+            {
+                //no match, reset high or low
+                if (squaresArray[index] > searchValue)
+                {
+                    high = index - 1;
+                }
+                else {
+                    low = index + 1;
+                }
+            }//end else
+        }//end while
+
+        if (!found) {
+            document.write("NOT a perfect square");
+        }
+
+    </script>
+</body>
+</html>

@@ -30,14 +30,30 @@
                if (index2 == 0) {
                    //capitalize the first character
                    //A-Z in ASCII is 65 - 90
-                   randomChar = Math.random() *
-                           (91-65) + 65;
+                   //Option A: Completely random:
+                   //randomChar = Math.random() * (91-65) + 65;
+
+                   //Option B: Presorted into 5 "buckets"
+                   if (index < (0.2 * ARRAYSIZE)) {
+                       randomChar = Math.random() * (70-65) + 65;
+                   }
+                   else if (index < (0.4 * ARRAYSIZE)) {
+                       randomChar = Math.random() * (76-70) + 70;
+                   }
+                   else if (index < (0.6 * ARRAYSIZE)) {
+                       randomChar = Math.random() * (82-76) + 76;
+                   }
+                   else if (index < (0.8 * ARRAYSIZE)) {
+                       randomChar = Math.random() * (87-82) + 82;
+                   }
+                   else {
+                       randomChar = Math.random() * (91-87) + 87;
+                   }
                }
                else {
                    //everything else lower case
                    //a-z in ASCII is 97-122
-                   randomChar = Math.random() *
-                           (123-97) + 97;
+                   randomChar = Math.random() * (123-97) + 97;
                }
 
                 //Append randomChar value to a random string:
